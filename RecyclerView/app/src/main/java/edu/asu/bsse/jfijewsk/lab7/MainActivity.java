@@ -79,8 +79,16 @@ public class MainActivity extends AppCompatActivity {
             SQLiteDatabase crsDB = db.openDB();
 
             Cursor cur = crsDB.rawQuery("select name from places;",
-                    new String[]{selectedPlace});
-            System.out.println("SELECTED PLACE =" + selectedPlace);
+                    new String[]{});
+
+            while(cur.moveToNext()){
+                try{
+                    System.out.println("SELECTED PLACE =" + cur.getString(0));
+                }catch(Exception ex){
+                    android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
+                }
+            }
+           // System.out.println("SELECTED PLACE =" + cur.getString(0));
             Log.d("test", "Made it here");
 
         }
