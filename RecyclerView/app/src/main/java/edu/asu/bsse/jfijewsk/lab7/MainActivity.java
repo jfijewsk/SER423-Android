@@ -8,45 +8,22 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.HashMap;
 
-/**
- * Copyright © 2020 Tim Lindquist,
- * <p/>
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * <p/>
- * http://www.apache.org/licenses/LICENSE-2.0
- * <p/>
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- * <p/>
- * Purpose: An app to demonstrate Lists in an activity with RecyclerView
- * RecyclerView was introduced by Google to provide for more efficient list
- * scrolling than via ListView, and to provide additional flexibility in
- * lists. Two expensive aspects of scrolling a list are creating (inflating)
- * views for items newly introduced into view, and the method findViewById.
- * Both iOS and Android minimize the number of times you must de-serialize
- * a row's view from xml by re-using views. iOS reduces the overhead in accessing
- * components of a view (the terminal nodes in the view hierarchy) by using
- * IBOutlets (Interface Builder Outlets) and setting them appropriately for each
- * view. Android's ListView recycles views rather than inflating new row views,
- * but historically the hierarchical search to find the controls within a row's
- * view (TextView's and ImageView, for example) had to be accomplished with each
- * (re)population of values into a row's view. Newly (2011) introduced recylclerview
- * removes repeated findViewById searches through use of the ViewHolder (sub)class.
- * The problem with RecyclerView is that there is extensive code to be added by the
- * developer when using this approach. See the referenced course textbook for a deeper
- * explanation and examples.
- *
- * The use of recycler view requires build.gradle for the module to include the dependency:
- *     implementation 'com.android.support:recyclerview-v7:28.0.0'
- *
- * @author Tim Lindquist Tim.Lindquist@asu.edu
- *         Software Engineering, CIDSE, IAFSE, Arizona State University Polytechnic
- * @version April, 2020
+/*
+ MainActivity.java
+ Assign7jfijewsk
+ Created by James on 3/18/20.
+ Copyright © 2020 James. All rights reserved.
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ @author   James Fijewski   mailto:jfijewsk@asu.edu.
+ @version March 30, 2020
  */
 
 public class MainActivity extends AppCompatActivity {
