@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import androidx.appcompat.widget.Toolbar;
+
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -41,27 +43,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        //Create the tool bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_toolbar);
+        setSupportActionBar(toolbar);
+
         placeNames = new HashMap<String,String>();
-        placeNames.put("Ser100","Object-Oriented Software Development");
-        placeNames.put("Ser200","Core Data Structures with Object Oriented Programming");
-        placeNames.put("Ser215","Software Enterprise: Personal Process");
-        placeNames.put("Ser216","Software Enterprise: Personal Process and Quality");
-        placeNames.put("Ser221","Programming Languages and Their Execution Environment");
-        placeNames.put("Ser222","Design and Analysis of Data Structures and Algorithms");
-        placeNames.put("Ser232","Computer Systems Fundamentals I");
-        placeNames.put("Ser250","Microcomputer Architecture and Programming");
-        placeNames.put("Ser315","Software Enterprise: Design and Process");
-        placeNames.put("Ser316","Software Enterprise: Construction and Transition");
-        placeNames.put("Ser321","Principles of Distributed Software Systems");
-        placeNames.put("Ser322","Principles of Database Management");
-        placeNames.put("Ser334","Operating Systems and Networks");
-        placeNames.put("Ser401","Computing Capstone Project I");
-        placeNames.put("Ser402","Computing Capstone Project II");
-        placeNames.put("Ser415","Software Enterprise: Inception and Elaboration");
-        placeNames.put("Ser416","Software Enterprise: Project and Process Management");
-        placeNames.put("Ser421","Web-Based Applications and Mobile Systems");
-        placeNames.put("Ser422","Web Application Programming");
-        placeNames.put("Ser423", "Mobile Systems");
 
         setContentView(R.layout.activity_main);
         listOfCoursesRV = (RecyclerView)findViewById(R.id.recycler_view);

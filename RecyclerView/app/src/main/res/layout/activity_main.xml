@@ -10,6 +10,12 @@
     android:background="@color/light_blue"
     tools:context="edu.asu.cidse.se.lindquis.recyclerview.MainActivity">
 
+    <include
+        layout = "@layout/app_toolbar"
+        android:id = "@+id/app_toolbar">
+
+    </include>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,7 +23,7 @@
         android:padding="25dp"
         android:textSize="32sp"
         android:id="@+id/hwTV"
-        android:text="SER Courses" />
+        android:text="Places" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_view"

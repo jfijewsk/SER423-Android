@@ -31,8 +31,8 @@ PlaceListAdapter.java
 public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.ViewHolder> implements
         View.OnClickListener {
 
-    private HashMap<String,String> courses;
-    private String lastSelectedCourse = "";
+    private HashMap<String,String> places;
+    private String lastSelectedPlace = "";
     private View lastSelectedView = null;
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,8 +49,8 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
         }
     }
 
-    public PlaceListAdapter(HashMap<String,String> courses){
-        this.courses = courses;
+    public PlaceListAdapter(HashMap<String,String> places){
+        this.places = places;
     }
 
     @Override
@@ -61,16 +61,16 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position){
-        String[] theCourses = courses.keySet().toArray(new String[]{});
+        String[] theCourses = places.keySet().toArray(new String[]{});
         Arrays.sort(theCourses);
         holder.aPrefixTV.setOnClickListener(this);
         holder.aPrefixTV.setText(theCourses[position]);
-        holder.aTitleTV.setText(courses.get(theCourses[position]));
+        holder.aTitleTV.setText(places.get(theCourses[position]));
     }
 
     @Override
     public int getItemCount(){
-        int count = courses.keySet().toArray().length;
+        int count = places.keySet().toArray().length;
         //android.util.Log.d(this.getClass().getSimpleName()," itemcount returning: "+count);
         return count;
     }
@@ -79,12 +79,12 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
         TextView atv = (TextView)v.findViewById(R.id.course_name);
         String aCrs = atv.getText().toString();
         v.setBackgroundResource(R.color.dark_blue);
-        if(lastSelectedCourse != "" && lastSelectedView != v){
+        if(lastSelectedPlace != "" && lastSelectedView != v){
             lastSelectedView.setBackgroundResource(R.color.light_blue);
         }
-        //android.util.Log.d(this.getClass().getSimpleName(),"called onClick " + aCrs +
-       // " open " + courses.get(aCrs));
+        android.util.Log.d(this.getClass().getSimpleName(),"called onClick " + aCrs +
+        " open " + places.get(aCrs));
         lastSelectedView = v;
-        lastSelectedCourse = aCrs;
+        lastSelectedPlace = aCrs;
     }
 }
