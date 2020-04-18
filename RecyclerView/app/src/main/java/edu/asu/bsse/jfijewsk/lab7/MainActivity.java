@@ -1,6 +1,10 @@
 package edu.asu.bsse.jfijewsk.lab7;
 
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -66,5 +70,25 @@ public class MainActivity extends AppCompatActivity {
         listOfCoursesRV.setLayoutManager(aLayoutManager);
         anAdapter = new PlaceListAdapter(courses);
         listOfCoursesRV.setAdapter(anAdapter);
+
+
+        // Try to get database
+        String selectedPlace = "null";
+        try{
+            PlaceDB db = new PlaceDB((Context)this);
+            SQLiteDatabase crsDB = db.openDB();
+
+            Cursor cur = crsDB.rawQuery("select name from places;",
+                    new String[]{selectedPlace});
+            System.out.println("SELECTED PLACE =" + selectedPlace);
+            Log.d("test", "Made it here");
+
+        }
+        catch(Exception e){
+            Log.d("test", "Errored at getting database file");
+            Log.d("test", e.toString());
+
+            //System.out.print(e);
+        }
     }
 }

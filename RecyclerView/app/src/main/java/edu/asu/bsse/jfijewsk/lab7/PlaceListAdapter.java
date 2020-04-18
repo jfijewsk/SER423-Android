@@ -71,7 +71,7 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
     @Override
     public int getItemCount(){
         int count = courses.keySet().toArray().length;
-        android.util.Log.d(this.getClass().getSimpleName()," itemcount returning: "+count);
+        //android.util.Log.d(this.getClass().getSimpleName()," itemcount returning: "+count);
         return count;
     }
 
@@ -82,8 +82,8 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
         if(lastSelectedCourse != "" && lastSelectedView != v){
             lastSelectedView.setBackgroundResource(R.color.light_blue);
         }
-        android.util.Log.d(this.getClass().getSimpleName(),"called onClick " + aCrs +
-        " open " + courses.get(aCrs));
+        //android.util.Log.d(this.getClass().getSimpleName(),"called onClick " + aCrs +
+       // " open " + courses.get(aCrs));
         lastSelectedView = v;
         lastSelectedCourse = aCrs;
     }

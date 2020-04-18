@@ -116,7 +116,7 @@ public class PlaceDB extends SQLiteOpenHelper {
             if(!checkDB()){
                 // only copy the database if it doesn't already exist in my database directory
                 debug("PlaceDB --> copyDB", "checkDB returned false, starting copy");
-                InputStream ip =  context.getResources().openRawResource(R.raw.coursedb);
+                InputStream ip =  context.getResources().openRawResource(R.raw.placedb);
                 // make sure the database path exists. if not, create it.
                 File aFile = new File(dbPath);
                 if(!aFile.exists()){
