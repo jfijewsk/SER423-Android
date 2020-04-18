@@ -35,40 +35,40 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView listOfCoursesRV;
     private RecyclerView.Adapter anAdapter;
     private RecyclerView.LayoutManager aLayoutManager;
-    private HashMap<String,String> courses;
+    private HashMap<String,String> placeNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        courses = new HashMap<String,String>();
-        courses.put("Ser100","Object-Oriented Software Development");
-        courses.put("Ser200","Core Data Structures with Object Oriented Programming");
-        courses.put("Ser215","Software Enterprise: Personal Process");
-        courses.put("Ser216","Software Enterprise: Personal Process and Quality");
-        courses.put("Ser221","Programming Languages and Their Execution Environment");
-        courses.put("Ser222","Design and Analysis of Data Structures and Algorithms");
-        courses.put("Ser232","Computer Systems Fundamentals I");
-        courses.put("Ser250","Microcomputer Architecture and Programming");
-        courses.put("Ser315","Software Enterprise: Design and Process");
-        courses.put("Ser316","Software Enterprise: Construction and Transition");
-        courses.put("Ser321","Principles of Distributed Software Systems");
-        courses.put("Ser322","Principles of Database Management");
-        courses.put("Ser334","Operating Systems and Networks");
-        courses.put("Ser401","Computing Capstone Project I");
-        courses.put("Ser402","Computing Capstone Project II");
-        courses.put("Ser415","Software Enterprise: Inception and Elaboration");
-        courses.put("Ser416","Software Enterprise: Project and Process Management");
-        courses.put("Ser421","Web-Based Applications and Mobile Systems");
-        courses.put("Ser422","Web Application Programming");
-        courses.put("Ser423", "Mobile Systems");
+        placeNames = new HashMap<String,String>();
+        placeNames.put("Ser100","Object-Oriented Software Development");
+        placeNames.put("Ser200","Core Data Structures with Object Oriented Programming");
+        placeNames.put("Ser215","Software Enterprise: Personal Process");
+        placeNames.put("Ser216","Software Enterprise: Personal Process and Quality");
+        placeNames.put("Ser221","Programming Languages and Their Execution Environment");
+        placeNames.put("Ser222","Design and Analysis of Data Structures and Algorithms");
+        placeNames.put("Ser232","Computer Systems Fundamentals I");
+        placeNames.put("Ser250","Microcomputer Architecture and Programming");
+        placeNames.put("Ser315","Software Enterprise: Design and Process");
+        placeNames.put("Ser316","Software Enterprise: Construction and Transition");
+        placeNames.put("Ser321","Principles of Distributed Software Systems");
+        placeNames.put("Ser322","Principles of Database Management");
+        placeNames.put("Ser334","Operating Systems and Networks");
+        placeNames.put("Ser401","Computing Capstone Project I");
+        placeNames.put("Ser402","Computing Capstone Project II");
+        placeNames.put("Ser415","Software Enterprise: Inception and Elaboration");
+        placeNames.put("Ser416","Software Enterprise: Project and Process Management");
+        placeNames.put("Ser421","Web-Based Applications and Mobile Systems");
+        placeNames.put("Ser422","Web Application Programming");
+        placeNames.put("Ser423", "Mobile Systems");
 
         setContentView(R.layout.activity_main);
         listOfCoursesRV = (RecyclerView)findViewById(R.id.recycler_view);
         listOfCoursesRV.setHasFixedSize(true);
         aLayoutManager = new LinearLayoutManager(this);
         listOfCoursesRV.setLayoutManager(aLayoutManager);
-        anAdapter = new PlaceListAdapter(courses);
+        anAdapter = new PlaceListAdapter(placeNames);
         listOfCoursesRV.setAdapter(anAdapter);
 
 
@@ -78,11 +78,12 @@ public class MainActivity extends AppCompatActivity {
             PlaceDB db = new PlaceDB((Context)this);
             SQLiteDatabase crsDB = db.openDB();
 
-            Cursor cur = crsDB.rawQuery("select name from places;",
+            Cursor cur = crsDB.rawQuery("select name, category from places;",
                     new String[]{});
 
             while(cur.moveToNext()){
                 try{
+                    placeNames.put(cur.getString(0), cur.getString(1));
                     System.out.println("SELECTED PLACE =" + cur.getString(0));
                 }catch(Exception ex){
                     android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
