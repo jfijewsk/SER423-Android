@@ -1,6 +1,7 @@
 package edu.asu.bsse.jfijewsk.lab7;
 
 import android.content.Context;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -51,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         //Create the tool bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_toolbar);
         setSupportActionBar(toolbar);
-        
+
         placeNames = new HashMap<String,String>();
 
         setContentView(R.layout.activity_main);
@@ -61,7 +62,6 @@ public class MainActivity extends AppCompatActivity {
         listOfCoursesRV.setLayoutManager(aLayoutManager);
         anAdapter = new PlaceListAdapter(placeNames);
         listOfCoursesRV.setAdapter(anAdapter);
-
 
         // Try to get database
         String selectedPlace = "null";
@@ -80,8 +80,7 @@ public class MainActivity extends AppCompatActivity {
                     android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
                 }
             }
-           // System.out.println("SELECTED PLACE =" + cur.getString(0));
-            Log.d("test", "Made it here");
+
 
         }
         catch(Exception e){
@@ -94,5 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void testing(View view){
         Log.d("Testing", "Button hit");
+        Intent intent = new Intent(this, AddNewPlace.class);
+        startActivity(intent);
     }
 }

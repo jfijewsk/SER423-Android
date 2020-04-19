@@ -15,6 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="Place Explorer         "
+            android:id="@+id/toolbar_title"
             android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
         <Button
