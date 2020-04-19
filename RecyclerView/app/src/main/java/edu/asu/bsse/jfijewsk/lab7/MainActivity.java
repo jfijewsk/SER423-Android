@@ -93,6 +93,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void testing(View view){
         Log.d("Testing", "Button hit");
+
         Intent intent = new Intent(this, AddNewPlace.class);
         startActivity(intent);
     }
