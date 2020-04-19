@@ -5,6 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
+
 import androidx.appcompat.widget.Toolbar;
 
 
@@ -46,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         //Create the tool bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_toolbar);
         setSupportActionBar(toolbar);
-
+        
         placeNames = new HashMap<String,String>();
 
         setContentView(R.layout.activity_main);
@@ -85,5 +90,9 @@ public class MainActivity extends AppCompatActivity {
 
             //System.out.print(e);
         }
+    }
+
+    public void testing(View view){
+        Log.d("Testing", "Button hit");
     }
 }
