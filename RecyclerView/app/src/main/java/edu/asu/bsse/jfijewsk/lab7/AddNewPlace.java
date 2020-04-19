@@ -1,6 +1,7 @@
 package edu.asu.bsse.jfijewsk.lab7;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,12 +19,16 @@ public class AddNewPlace extends AppCompatActivity {
 
         setContentView(R.layout.activity_add_new_place2);
 
-        final LayoutInflater factory = getLayoutInflater();
+        //Create the tool bar
+        Toolbar toolbar = (Toolbar) findViewById(R.id.app_toolbar);
+        setSupportActionBar(toolbar);
 
-        final View toolBarView = factory.inflate(R.layout.app_toolbar, null);
+       // final LayoutInflater factory = getLayoutInflater();
+        //final View toolBarView = factory.inflate(R.layout.app_toolbar, null);
 
-        Button button = (Button) toolBarView.findViewById(R.id.new_place_button);
+        Button button = (Button) toolbar.findViewById(R.id.new_place_button);
         button.setText("Back");
+
     }
 
     public void testing(View view){
