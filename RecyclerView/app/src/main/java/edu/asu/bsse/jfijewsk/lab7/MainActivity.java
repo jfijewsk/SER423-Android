@@ -6,10 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
-import android.widget.ImageButton;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -44,6 +41,7 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter anAdapter;
     private RecyclerView.LayoutManager aLayoutManager;
     private HashMap<String,String> placeNames;
+    public static SQLiteDatabase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,9 +65,9 @@ public class MainActivity extends AppCompatActivity {
         String selectedPlace = "null";
         try{
             PlaceDB db = new PlaceDB((Context)this);
-            SQLiteDatabase crsDB = db.openDB();
+            dataBase = db.openDB();
 
-            Cursor cur = crsDB.rawQuery("select name, category from places;",
+            Cursor cur = dataBase.rawQuery("select name, category from places;",
                     new String[]{});
 
             while(cur.moveToNext()){
@@ -97,4 +95,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, AddNewPlace.class);
         startActivity(intent);
     }
+
+
 }
