@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
         catch(Exception e){
-            Log.d("test", "Errored at getting database file");
+            Log.d("test", "Errored at getting or saving database file");
             Log.d("test", e.toString());
 
             //System.out.print(e);

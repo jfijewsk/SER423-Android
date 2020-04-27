@@ -112,7 +112,7 @@ public class AddNewPlace extends AppCompatActivity {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
                             Log.d("Debug", "Clicked ok");
-                            //Toast.makeText(this,"You clicked yes button",Toast.LENGTH_LONG).show();
+                            finish();
                         }
                     });
             AlertDialog alertDialog = alertDialogBuilder.create();
