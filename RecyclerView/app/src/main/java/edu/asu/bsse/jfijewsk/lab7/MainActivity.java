@@ -120,7 +120,10 @@ public class MainActivity extends AppCompatActivity {
             //PlaceDB db = new PlaceDB(this);
             dataBase = db.openDB();
 
-            dataBase.insert("places", null, newPlace);
+            long result = dataBase.insert("places", null, newPlace);
+            if(result == -1){
+                throw new RuntimeException();
+            }
             dataBase.close();
             db.close();
 
@@ -129,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
             placeNames.put(newPlace.getAsString("name"), newPlace.getAsString("category"));
             anAdapter = new PlaceListAdapter(placeNames);
             listOfCoursesRV.setAdapter(anAdapter);
-
+            return true;
 
         }
         catch(Exception e){
@@ -141,7 +144,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-        return true;
+        return false;
     }
 
 }
