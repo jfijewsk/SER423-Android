@@ -19,6 +19,8 @@ public class AddNewPlace extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        final MainActivity mainActivity = new MainActivity();
+
         setContentView(R.layout.activity_add_new_place2);
 
         //Create the tool bar
@@ -44,26 +46,25 @@ public class AddNewPlace extends AppCompatActivity {
 
         Button saveButton = (Button) findViewById(R.id.saveBtn);
         saveButton.setOnClickListener(new OnClickListener(){
-            public void onClick(View v){
+            public void onClick(View v) {
                 Log.d("Save Button hit", "Saving");
 
-                String singleAddress = addressTF1.getText().toString() + "$" +addressTF2.getText().toString();
+                String singleAddress = addressTF1.getText().toString() + "$" + addressTF2.getText().toString();
                 double latitude = 0.0;
                 double longitude = 0.0;
                 double elevation = 0.0;
                 // Try to get the double values
 
-                try{
+                try {
                     latitude = Double.parseDouble(String.valueOf(latitudeTF.getText()));
                     longitude = Double.parseDouble(String.valueOf(longitudeTF.getText()));
                     elevation = Double.parseDouble(String.valueOf(elevationTF.getText()));
 
-                }
-                catch(Exception e){
+                } catch (Exception e) {
                     Log.d("ERROR", "Could not turn entered values into doubles");
                 }
                 PlaceDescription newPlace = new PlaceDescription(nameTF.getText().toString(), descriptionTF.getText().toString(),
-                        categoryTF.getText().toString(), addressTitleTF.getText().toString(), singleAddress, elevation, latitude, longitude );
+                        categoryTF.getText().toString(), addressTitleTF.getText().toString(), singleAddress, elevation, latitude, longitude);
 
                 // Add new place to sql dataBase
 
@@ -76,12 +77,11 @@ public class AddNewPlace extends AppCompatActivity {
                 newPlaceSql.put("latitude", latitude);
                 newPlaceSql.put("longitude", longitude);
                 newPlaceSql.put("elevation", elevation);
-                MainActivity.dataBase.insert("places", null, newPlaceSql);
 
-
-                MainActivity.dataBase.execSQL("insert into places (name, addressTitle, addressStreet, description, category, latitude, longitude, elevation)" +
-                        " VALUES ('ASU West', 'ASU West Campus', '13591 N 47th Ave$Phoenix AZ 85051', 'Home of ASUs Applied Computing Program', 'School', '33.608979', '-112.159469', '1100.0')");
-                }
+                mainActivity.addPlace(newPlaceSql);
+                //MainActivity.dataBase.insert("places", null, newPlaceSql);
+            }
+                ;
         });
 
     }

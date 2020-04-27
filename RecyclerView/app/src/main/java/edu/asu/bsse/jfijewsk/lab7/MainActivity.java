@@ -1,5 +1,6 @@
 package edu.asu.bsse.jfijewsk.lab7;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
@@ -41,11 +42,16 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView.Adapter anAdapter;
     private RecyclerView.LayoutManager aLayoutManager;
     private HashMap<String,String> placeNames;
-    public static SQLiteDatabase dataBase;
+    private static Context mContext;
+    private static PlaceDB db;
+    private SQLiteDatabase dataBase;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        mContext = getApplicationContext();
 
         //Create the tool bar
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_toolbar);
@@ -64,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         // Try to get database
         String selectedPlace = "null";
         try{
-            PlaceDB db = new PlaceDB((Context)this);
+            db = new PlaceDB((Context)this);
             dataBase = db.openDB();
 
             Cursor cur = dataBase.rawQuery("select name, category from places;",
@@ -96,5 +102,37 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public boolean addPlace(ContentValues newPlace){
+        //dataBase.execSQL("insert into places (name, addressTitle, addressStreet, description, category, latitude, longitude, elevation)" +
+        //        " VALUES ('ASU West', 'ASU West Campus', '13591 N 47th Ave$Phoenix AZ 85051', 'Home of ASUs Applied Computing Program', 'School', '33.608979', '-112.159469', '1100.0')");
+
+        try{
+
+            //Log.d("Info", DB_PATH.toString());
+            //Context dabaBaseContent =  ContextSingleton.getContext();
+
+            if(db == null){
+                Log.d("Debug", "db is null");
+                db = new PlaceDB(this.getApplicationContext());
+            }
+            //PlaceDB db = new PlaceDB(this);
+            dataBase = db.openDB();
+
+            dataBase.insert("places", null, newPlace);
+            dataBase.close();
+            db.close();
+
+        }
+        catch(Exception e){
+            Log.d("test", "Errored at getting database file");
+            Log.d("test", e.toString());
+
+            //System.out.print(e);
+        }
+
+
+
+        return true;
+    }
 
 }

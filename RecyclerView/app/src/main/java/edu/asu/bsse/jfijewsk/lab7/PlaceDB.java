@@ -79,7 +79,7 @@ public class PlaceDB extends SQLiteOpenHelper {
                 checkDB = SQLiteDatabase.openDatabase(path, null, SQLiteDatabase.OPEN_READWRITE);
                 if (checkDB!=null) {
                     debug("PlaceDB --> checkDB","opened db at: "+checkDB.getPath());
-                    Cursor tabChk = checkDB.rawQuery("SELECT name FROM sqlite_master where type='table' and name='place';", null);
+                    Cursor tabChk = checkDB.rawQuery("SELECT name FROM sqlite_master where type='table' and name='places';", null);
                     if(tabChk == null){
                         debug("PlaceDB --> checkDB","check for place table result set is null");
                     }else{
@@ -89,7 +89,7 @@ public class PlaceDB extends SQLiteOpenHelper {
                         crsTabExists = !tabChk.isAfterLast();
                     }
                     if(crsTabExists){
-                        Cursor c= checkDB.rawQuery("SELECT * FROM course", null);
+                        Cursor c= checkDB.rawQuery("SELECT * FROM places", null);
                         c.moveToFirst();
                         while(!c.isAfterLast()) {
                             String crsName = c.getString(0);
