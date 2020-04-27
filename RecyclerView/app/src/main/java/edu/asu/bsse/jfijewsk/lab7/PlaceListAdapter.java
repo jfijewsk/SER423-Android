@@ -1,6 +1,8 @@
 package edu.asu.bsse.jfijewsk.lab7;
 
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,5 +88,9 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
         " open " + places.get(aCrs));
         lastSelectedView = v;
         lastSelectedPlace = aCrs;
+
+        Intent intent = new Intent("PlaceDetails", PlaceDetails.class);
+        startActivity(intent);
+
     }
 }

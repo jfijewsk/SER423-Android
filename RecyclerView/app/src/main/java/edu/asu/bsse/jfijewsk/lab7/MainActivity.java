@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
             while(cur.moveToNext()){
                 try{
                     placeNames.put(cur.getString(0), cur.getString(1));
-                    Log.d("Debud", "SELECTED PLACE =" + cur.getString(0));
-                    Log.d("Debud1", "SELECTED PLACE =" + cur.getString(1));
+                    Log.d("Debug", "SELECTED PLACE =" + cur.getString(0));
+                    Log.d("Debug1", "SELECTED PLACE =" + cur.getString(1));
 
                 }catch(Exception ex){
                     android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
@@ -97,10 +97,16 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void testing(View view){
-        Log.d("Testing", "Button hit");
+    public void addNewPlaceLauncher(View view){
+        //Log.d("Testing", "Button hit");
 
         Intent intent = new Intent(this, AddNewPlace.class);
+        startActivity(intent);
+    }
+
+    public void placeDetailsLauncher(){
+
+        Intent intent = new Intent(this, PlaceDetails.class);
         startActivity(intent);
     }
 
