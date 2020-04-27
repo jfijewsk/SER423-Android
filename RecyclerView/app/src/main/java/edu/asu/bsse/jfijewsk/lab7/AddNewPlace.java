@@ -6,15 +6,12 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class AddNewPlace extends AppCompatActivity {
@@ -42,9 +39,9 @@ public class AddNewPlace extends AppCompatActivity {
 
         // Get all the Textfields
         nameTF = (TextView) findViewById(R.id.nameTF);
-        final TextView addressTF1 = (TextView) findViewById(R.id.address1TF);
-        final TextView addressTF2 = (TextView) findViewById(R.id.addressTF2);
-        final TextView addressTitleTF = (TextView) findViewById(R.id.addressTitleTF);
+        final TextView addressTF1 = (TextView) findViewById(R.id.addressTF1);
+        final TextView addressTF2 = (TextView) findViewById(R.id.addressStreetTF2);
+        final TextView addressTitleTF = (TextView) findViewById(R.id.addressTitle);
         final TextView descriptionTF = (TextView) findViewById(R.id.descriptionTF);
         final TextView categoryTF = (TextView) findViewById(R.id.categoryTF);
         final TextView latitudeTF = (TextView) findViewById(R.id.latitudeTF);

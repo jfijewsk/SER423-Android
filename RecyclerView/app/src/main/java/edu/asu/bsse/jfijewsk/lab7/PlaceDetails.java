@@ -25,13 +25,5 @@ public class PlaceDetails extends AppCompatActivity {
         Button button = (Button) toolbar.findViewById(R.id.new_place_button);
         button.setText("Back");
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
     }
 }

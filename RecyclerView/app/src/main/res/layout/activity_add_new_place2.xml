@@ -28,9 +28,9 @@
             android:id="@+id/nameLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="56dp"
+            android:layout_marginStart="9dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="53dp"
             android:text="Name"
             android:textSize="14sp"
             app:layout_constraintEnd_toStartOf="@+id/nameTF"
@@ -38,33 +38,32 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/addressTitleLabel"
+            android:id="@+id/addressStreetLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="7dp"
-            android:layout_marginTop="52dp"
-            android:layout_marginEnd="41dp"
-            android:text="Address"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="10dp"
+            android:text="Address Title"
             android:textSize="14sp"
-            app:layout_constraintEnd_toStartOf="@+id/address1TF"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintBaseline_toBaselineOf="@+id/addressTitle"
+            app:layout_constraintEnd_toStartOf="@+id/addressTitle"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/addressTitleLabel"
+            android:id="@+id/addressStreetLabel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginBottom="9dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginEnd="2dp"
+            android:layout_marginBottom="7dp"
             android:text="Address Street"
             android:textSize="14sp"
-            app:layout_constraintBottom_toBottomOf="@+id/addressTitleTF"
-            app:layout_constraintEnd_toStartOf="@+id/addressTitleTF"
+            app:layout_constraintBottom_toBottomOf="@+id/addressTF1"
+            app:layout_constraintEnd_toStartOf="@+id/addressTF1"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/address1TF"
+            android:id="@+id/addressTitle"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginEnd="4dp"
@@ -72,9 +71,9 @@
             android:ems="10"
             android:inputType="textPersonName"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/addressTF2"
+            app:layout_constraintBottom_toTopOf="@+id/addressTF1"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/addressTitleLabel"
+            app:layout_constraintStart_toEndOf="@+id/addressStreetLabel"
             app:layout_constraintTop_toBottomOf="@+id/nameTF" />
 
         <EditText
@@ -82,32 +81,33 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginTop="2dp"
-            android:layout_marginEnd="2dp"
-            android:layout_marginBottom="1dp"
+            android:layout_marginEnd="3dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/address1TF"
+            app:layout_constraintBottom_toTopOf="@+id/addressTitle"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/nameLabel"
             app:layout_constraintTop_toTopOf="parent" />
 
         <EditText
-            android:id="@+id/addressTF2"
+            android:id="@+id/addressTF1"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginEnd="3dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:textSize="14sp"
-            app:layout_constraintBottom_toTopOf="@+id/addressTitleTF"
-            app:layout_constraintEnd_toEndOf="@+id/addressTitleTF"
-            app:layout_constraintStart_toStartOf="@+id/address1TF"
-            app:layout_constraintTop_toBottomOf="@+id/address1TF" />
+            app:layout_constraintBottom_toTopOf="@+id/addressStreetTF2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/addressStreetLabel"
+            app:layout_constraintTop_toBottomOf="@+id/addressTitle" />
 
         <EditText
-            android:id="@+id/addressTitleTF"
+            android:id="@+id/addressStreetTF2"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="3dp"
             android:layout_marginEnd="3dp"
             android:layout_marginBottom="1dp"
             android:ems="10"
@@ -115,8 +115,8 @@
             android:textSize="14sp"
             app:layout_constraintBottom_toTopOf="@+id/descriptionTF"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/addressTitleLabel"
-            app:layout_constraintTop_toBottomOf="@+id/addressTF2" />
+            app:layout_constraintStart_toStartOf="@+id/categoryTF"
+            app:layout_constraintTop_toBottomOf="@+id/addressTF1" />
 
         <TextView
             android:id="@+id/descriptionLabel"
@@ -198,7 +198,7 @@
             app:layout_constraintBottom_toTopOf="@+id/categoryTF"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/descriptionLabel"
-            app:layout_constraintTop_toBottomOf="@+id/addressTitleTF" />
+            app:layout_constraintTop_toBottomOf="@+id/addressStreetTF2" />
 
         <TextView
             android:id="@+id/categoryLabel"
@@ -218,7 +218,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="21dp"
             android:layout_marginEnd="46dp"
             android:text="Latitude"
             android:textSize="14sp"
