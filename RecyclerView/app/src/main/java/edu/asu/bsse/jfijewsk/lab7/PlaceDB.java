@@ -88,18 +88,6 @@ public class PlaceDB extends SQLiteOpenHelper {
                                 ((tabChk.isAfterLast() ? "empty" : (String) tabChk.getString(0))));
                         crsTabExists = !tabChk.isAfterLast();
                     }
-                    if(crsTabExists){
-                        Cursor c= checkDB.rawQuery("SELECT * FROM places", null);
-                        c.moveToFirst();
-                        while(!c.isAfterLast()) {
-                            String crsName = c.getString(0);
-                            int crsid = c.getInt(1);
-                            debug("PlaceDB --> checkDB","Place table has PlaceName: "+
-                                    crsName+"\tPlaceID: "+crsid);
-                            c.moveToNext();
-                        }
-                        crsTabExists = true;
-                    }
                 }
             }
         }catch(SQLiteException e){

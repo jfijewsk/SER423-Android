@@ -38,10 +38,10 @@ import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
-    private RecyclerView listOfCoursesRV;
-    private RecyclerView.Adapter anAdapter;
-    private RecyclerView.LayoutManager aLayoutManager;
-    private HashMap<String,String> placeNames;
+    private static RecyclerView listOfCoursesRV;
+    private static RecyclerView.Adapter anAdapter;
+    private static RecyclerView.LayoutManager aLayoutManager;
+    private static HashMap<String,String> placeNames;
     private static Context mContext;
     private static PlaceDB db;
     private SQLiteDatabase dataBase;
@@ -79,7 +79,9 @@ public class MainActivity extends AppCompatActivity {
             while(cur.moveToNext()){
                 try{
                     placeNames.put(cur.getString(0), cur.getString(1));
-                    System.out.println("SELECTED PLACE =" + cur.getString(0));
+                    Log.d("Debud", "SELECTED PLACE =" + cur.getString(0));
+                    Log.d("Debud1", "SELECTED PLACE =" + cur.getString(1));
+
                 }catch(Exception ex){
                     android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
                 }
@@ -121,6 +123,13 @@ public class MainActivity extends AppCompatActivity {
             dataBase.insert("places", null, newPlace);
             dataBase.close();
             db.close();
+
+            Log.d("NEWPLACE DATA", newPlace.getAsString("name"));
+
+            placeNames.put(newPlace.getAsString("name"), newPlace.getAsString("category"));
+            anAdapter = new PlaceListAdapter(placeNames);
+            listOfCoursesRV.setAdapter(anAdapter);
+
 
         }
         catch(Exception e){
