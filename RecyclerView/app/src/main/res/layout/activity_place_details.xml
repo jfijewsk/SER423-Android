@@ -43,6 +43,168 @@
                 tools:layout_editor_absoluteX="7dp"
                 tools:layout_editor_absoluteY="20dp" />
 
+            <TextView
+                android:id="@+id/detailAddressTitleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address Title"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="62dp" />
+
+            <TextView
+                android:id="@+id/detailAddressLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address Title"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="119dp" />
+
+            <TextView
+                android:id="@+id/detailDescriptionLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Description"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="211dp" />
+
+            <TextView
+                android:id="@+id/detailCategoryLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Category"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="266dp" />
+
+            <TextView
+                android:id="@+id/detailSelectSecondLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select second place"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="536dp" />
+
+            <TextView
+                android:id="@+id/detailElevationTF2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Elevation"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="420dp" />
+
+            <TextView
+                android:id="@+id/detailLongitudeLabel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Longitude"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="364dp" />
+
+            <TextView
+                android:id="@+id/detailLatitudeLabel2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Latitude"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="316dp" />
+
+            <EditText
+                android:id="@+id/detailNameTF"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="6dp" />
+
+            <EditText
+                android:id="@+id/detailAddressTitleTF"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="54dp" />
+
+            <EditText
+                android:id="@+id/detailAddressTF1"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="107dp" />
+
+            <EditText
+                android:id="@+id/detailAddressTF2"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="146dp" />
+
+            <EditText
+                android:id="@+id/detailDescriptionTF"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="202dp" />
+
+            <EditText
+                android:id="@+id/detailCategoryTF"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="254dp" />
+
+            <EditText
+                android:id="@+id/detailLatitudeTF"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="307dp" />
+
+            <EditText
+                android:id="@+id/detailLongitudeTF"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="357dp" />
+
+            <EditText
+                android:id="@+id/detailSelectSecondLabel"
+                android:layout_width="304dp"
+                android:layout_height="39dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                android:textSize="14sp"
+                tools:layout_editor_absoluteX="100dp"
+                tools:layout_editor_absoluteY="408dp" />
+
+            <Button
+                android:id="@+id/saveChangeBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Save Changes"
+                tools:layout_editor_absoluteX="155dp"
+                tools:layout_editor_absoluteY="466dp" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 
