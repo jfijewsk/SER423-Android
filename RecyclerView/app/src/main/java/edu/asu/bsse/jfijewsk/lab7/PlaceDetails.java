@@ -1,5 +1,8 @@
 package edu.asu.bsse.jfijewsk.lab7;
 
+import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -8,11 +11,15 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 public class PlaceDetails extends AppCompatActivity {
+
+    PlaceDescription currentPlace;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,11 +46,22 @@ public class PlaceDetails extends AppCompatActivity {
 
         Button saveButton = (Button) findViewById(R.id.saveChangeBtn);
         Button deleteBtn = (Button) findViewById(R.id.deletePlaceBtn);
+
+        getPlaceDetails(getIntent().getStringExtra("placeName"));
     }
 
     public void toolBarAction(View view){
         //Log.d("Testing", "Button hit");
 
         finish();
+    }
+
+    public void getPlaceDetails(String name) {
+        // Get the selected place information
+        final MainActivity mainActivity = new MainActivity();
+
+        currentPlace = mainActivity.getPlace(name);
+
+        Log.d("DATA", "GOT PLACE INFO and address is " + currentPlace.getAddress());
     }
 }

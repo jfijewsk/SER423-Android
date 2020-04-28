@@ -40,4 +40,36 @@ public class PlaceDescription {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public String getAddress_title() {
+        return address_title;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public Double getElevation() {
+        return elevation;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
 }

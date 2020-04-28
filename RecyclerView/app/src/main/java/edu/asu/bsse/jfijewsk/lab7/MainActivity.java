@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.sql.SQLException;
 import java.util.HashMap;
 
 /*
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     private static RecyclerView listOfCoursesRV;
     private static RecyclerView.Adapter anAdapter;
     private static RecyclerView.LayoutManager aLayoutManager;
-    private static HashMap<String,String> placeNames;
+    private static HashMap<String, String> placeNames;
     private static Context mContext;
     private static PlaceDB db;
     private SQLiteDatabase dataBase;
@@ -57,10 +58,10 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.app_toolbar);
         setSupportActionBar(toolbar);
 
-        placeNames = new HashMap<String,String>();
+        placeNames = new HashMap<String, String>();
 
         setContentView(R.layout.activity_main);
-        listOfCoursesRV = (RecyclerView)findViewById(R.id.recycler_view);
+        listOfCoursesRV = (RecyclerView) findViewById(R.id.recycler_view);
         listOfCoursesRV.setHasFixedSize(true);
         aLayoutManager = new LinearLayoutManager(this);
         listOfCoursesRV.setLayoutManager(aLayoutManager);
@@ -69,27 +70,26 @@ public class MainActivity extends AppCompatActivity {
 
         // Try to get database
         String selectedPlace = "null";
-        try{
-            db = new PlaceDB((Context)this);
+        try {
+            db = new PlaceDB((Context) this);
             dataBase = db.openDB();
 
             Cursor cur = dataBase.rawQuery("select name, category from places;",
                     new String[]{});
 
-            while(cur.moveToNext()){
-                try{
+            while (cur.moveToNext()) {
+                try {
                     placeNames.put(cur.getString(0), cur.getString(1));
                     Log.d("Debug", "SELECTED PLACE =" + cur.getString(0));
                     Log.d("Debug1", "SELECTED PLACE =" + cur.getString(1));
 
-                }catch(Exception ex){
-                    android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
+                } catch (Exception ex) {
+                    android.util.Log.w(this.getClass().getSimpleName(), "exception stepping thru cursor" + ex.getMessage());
                 }
             }
 
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Log.d("test", "Errored at getting database file");
             Log.d("test", e.toString());
 
@@ -97,29 +97,29 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void toolBarAction(View view){
+    public void toolBarAction(View view) {
         //Log.d("Testing", "Button hit");
 
         Intent intent = new Intent(this, AddNewPlace.class);
         startActivity(intent);
     }
 
-    public void placeDetailsLauncher(){
+    public void placeDetailsLauncher() {
 
         Intent intent = new Intent(this, PlaceDetails.class);
         startActivity(intent);
     }
 
-    public boolean addPlace(ContentValues newPlace){
+    public boolean addPlace(ContentValues newPlace) {
         //dataBase.execSQL("insert into places (name, addressTitle, addressStreet, description, category, latitude, longitude, elevation)" +
         //        " VALUES ('ASU West', 'ASU West Campus', '13591 N 47th Ave$Phoenix AZ 85051', 'Home of ASUs Applied Computing Program', 'School', '33.608979', '-112.159469', '1100.0')");
 
-        try{
+        try {
 
             //Log.d("Info", DB_PATH.toString());
             //Context dabaBaseContent =  ContextSingleton.getContext();
 
-            if(db == null){
+            if (db == null) {
                 Log.d("Debug", "db is null");
                 db = new PlaceDB(this.getApplicationContext());
             }
@@ -127,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
             dataBase = db.openDB();
 
             long result = dataBase.insert("places", null, newPlace);
-            if(result == -1){
+            if (result == -1) {
                 throw new RuntimeException();
             }
             dataBase.close();
@@ -140,8 +140,7 @@ public class MainActivity extends AppCompatActivity {
             listOfCoursesRV.setAdapter(anAdapter);
             return true;
 
-        }
-        catch(Exception e){
+        } catch (Exception e) {
             Log.d("test", "Errored at getting or saving database file");
             Log.d("test", e.toString());
 
@@ -149,8 +148,72 @@ public class MainActivity extends AppCompatActivity {
         }
 
 
-
         return false;
     }
 
+
+    public PlaceDescription getPlace(String name) {
+
+        try {
+
+            if (db == null) {
+                Log.d("Debug", "db is null");
+                db = new PlaceDB(this.getApplicationContext());
+            }
+            //PlaceDB db = new PlaceDB(this);
+            dataBase = db.openDB();
+
+            Cursor cur = dataBase.rawQuery("SELECT name, description, category, addressTitle, addressStreet, elevation, latitude, longitude\n" +
+                            "FROM places \n" +
+                            "WHERE name = '" + name + "'",
+                    new String[]{});
+
+            while (cur.moveToNext()) {
+                try {
+                    //placeNames.put(cur.getString(0), cur.getString(1));
+                    Log.d("Debug", "Retreived location address: =" + cur.getString(4));
+                    //Log.d("Debug1", "SELECTED PLACE =" + cur.getString(1));
+
+                    // Convert Doubles
+                    double latitude = 0.0;
+                    double longitude = 0.0;
+                    double elevation = 0.0;
+                    // Try to get the double values
+
+                    try {
+                        latitude = Double.parseDouble(String.valueOf(cur.getString(5)));
+                        longitude = Double.parseDouble(String.valueOf(cur.getString(6)));
+                        elevation = Double.parseDouble(String.valueOf(cur.getString(7)));
+
+                    } catch (Exception e) {
+                        Log.d("ERROR", "Could not turn entered values into doubles");
+                    }
+
+                    PlaceDescription result = new PlaceDescription(cur.getString(0), cur.getString(1), cur.getString(2), cur.getString(3),
+                            cur.getString(4), elevation, latitude, longitude);
+
+                    dataBase.close();
+                    db.close();
+
+                    return result;
+
+
+                } catch (Exception e) {
+                    Log.d("test", "Errored at getting or saving database file");
+                    Log.d("test", e.toString());
+
+                    //System.out.print(e);
+                }
+
+
+                return null;
+            }
+
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return null;
+    }
 }

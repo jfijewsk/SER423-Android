@@ -93,39 +93,8 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
         lastSelectedView = v;
         lastSelectedPlace = aCrs;
 
-
-        // Get the selected place information
-        String selectedPlace = "null";
-        try{
-            PlaceDB db = new PlaceDB(lastSelectedView.getContext());
-            SQLiteDatabase dataBase = db.openDB();
-
-            Cursor cur = dataBase.rawQuery("SELECT name, description, category, addressTitle, addressStreet, elevation, latitude, longitude\n" +
-                            "FROM places \n" +
-                            "WHERE name = '" + aCrs + "'",
-                    new String[]{});
-
-            while(cur.moveToNext()){
-                try{
-                    //placeNames.put(cur.getString(0), cur.getString(1));
-                    Log.d("Debug", "Retreived location address: =" + cur.getString(4));
-                    //Log.d("Debug1", "SELECTED PLACE =" + cur.getString(1));
-
-                }catch(Exception ex){
-                    android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
-                }
-            }
-
-
-        }
-        catch(Exception e){
-            Log.d("test", "Errored at getting database file");
-            Log.d("test", e.toString());
-
-            //System.out.print(e);
-        }
-
         Intent intent = new Intent(lastSelectedView.getContext(), PlaceDetails.class);
+        intent.putExtra("placeName", aCrs);
         lastSelectedView.getContext().startActivity(intent);
 
     }
