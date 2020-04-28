@@ -39,119 +39,140 @@
                 android:id="@+id/detailNameLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="14dp"
                 android:text="Name"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="20dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/detailNameTF" />
 
             <TextView
                 android:id="@+id/detailAddressTitleLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="42dp"
                 android:text="Address Title"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="62dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/detailNameLabel" />
 
             <TextView
                 android:id="@+id/detailAddressLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="38dp"
                 android:text="Address Title"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="119dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailAddressTitleLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailAddressTitleLabel" />
 
             <TextView
                 android:id="@+id/detailDescriptionLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="72dp"
                 android:text="Description"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="211dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailAddressLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailAddressLabel" />
 
             <TextView
                 android:id="@+id/detailCategoryLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
                 android:text="Category"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="266dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailDescriptionLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailDescriptionLabel" />
 
             <TextView
                 android:id="@+id/detailSelectSecondLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
                 android:text="Select second place"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="536dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailElevationTF2"
+                app:layout_constraintTop_toBottomOf="@+id/saveChangeBtn" />
 
             <TextView
                 android:id="@+id/detailGreatCicleLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="69dp"
+                android:layout_marginBottom="27dp"
                 android:text="Great Circle"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="590dp" />
+                app:layout_constraintBottom_toTopOf="@+id/detailHeadingLabel"
+                app:layout_constraintEnd_toStartOf="@+id/secondPlaceSpinner" />
 
             <TextView
                 android:id="@+id/detailHeadingLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginEnd="52dp"
+                android:layout_marginBottom="16dp"
                 android:text="Initial Heading"
-                tools:layout_editor_absoluteX="6dp"
-                tools:layout_editor_absoluteY="636dp" />
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/secondPlaceSpinner"
+                app:layout_constraintStart_toStartOf="@+id/detailGreatCicleLabel" />
 
             <TextView
                 android:id="@+id/detailElevationTF2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="37dp"
                 android:text="Elevation"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="420dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailLongitudeLabel2"
+                app:layout_constraintTop_toBottomOf="@+id/detailLongitudeLabel2" />
 
             <TextView
                 android:id="@+id/detailLongitudeLabel2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="29dp"
                 android:text="Longitude"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="364dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailLatitudeLabel2"
+                app:layout_constraintTop_toBottomOf="@+id/detailLatitudeLabel2" />
 
             <TextView
                 android:id="@+id/detailLatitudeLabel2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="31dp"
                 android:text="Latitude"
-                tools:layout_editor_absoluteX="7dp"
-                tools:layout_editor_absoluteY="316dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailCategoryLabel"
+                app:layout_constraintTop_toBottomOf="@+id/detailCategoryLabel" />
 
             <EditText
                 android:id="@+id/detailNameTF"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="3dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="6dp" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/detailAddressTitleTF"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/detailAddressTitleTF"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginTop="9dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="54dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailAddressTF1"
+                app:layout_constraintTop_toBottomOf="@+id/detailNameTF" />
 
             <EditText
                 android:id="@+id/detailAddressTF1"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginTop="14dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="107dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailAddressTF2"
+                app:layout_constraintTop_toBottomOf="@+id/detailAddressTitleTF" />
 
             <EditText
                 android:id="@+id/detailAddressTF2"
@@ -160,95 +181,112 @@
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="146dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailDescriptionTF"
+                app:layout_constraintTop_toBottomOf="@+id/detailAddressTF1" />
 
             <EditText
                 android:id="@+id/detailDescriptionTF"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginTop="17dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="202dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailCategoryTF"
+                app:layout_constraintTop_toBottomOf="@+id/detailAddressTF2" />
 
             <EditText
                 android:id="@+id/detailCategoryTF"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginTop="13dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="254dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailLatitudeTF"
+                app:layout_constraintTop_toBottomOf="@+id/detailDescriptionTF" />
 
             <EditText
                 android:id="@+id/detailLatitudeTF"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginTop="14dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="307dp" />
+                app:layout_constraintStart_toStartOf="@+id/detailLongitudeTF"
+                app:layout_constraintTop_toBottomOf="@+id/detailCategoryTF" />
 
             <EditText
                 android:id="@+id/detailLongitudeTF"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="11dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="357dp" />
+                app:layout_constraintStart_toEndOf="@+id/detailLongitudeLabel2"
+                app:layout_constraintTop_toBottomOf="@+id/detailLatitudeTF" />
 
             <EditText
-                android:id="@+id/detailSelectSecondLabel"
+                android:id="@+id/detailElevationTF"
                 android:layout_width="304dp"
                 android:layout_height="39dp"
+                android:layout_marginStart="33dp"
+                android:layout_marginTop="60dp"
                 android:ems="10"
                 android:inputType="textPersonName"
                 android:textSize="14sp"
-                tools:layout_editor_absoluteX="100dp"
-                tools:layout_editor_absoluteY="408dp" />
+                app:layout_constraintStart_toEndOf="@+id/detailElevationTF2"
+                app:layout_constraintTop_toBottomOf="@+id/detailLatitudeTF" />
 
             <Button
                 android:id="@+id/saveChangeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="19dp"
                 android:text="Save Changes"
-                tools:layout_editor_absoluteX="30dp"
-                tools:layout_editor_absoluteY="464dp" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detailElevationTF" />
 
             <Spinner
                 android:id="@+id/secondPlaceSpinner"
                 android:layout_width="254dp"
                 android:layout_height="26dp"
-                tools:layout_editor_absoluteX="150dp"
-                tools:layout_editor_absoluteY="536dp" />
+                android:layout_marginTop="24dp"
+                android:layout_marginEnd="3dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/saveChangeBtn" />
 
             <TextView
                 android:id="@+id/greatCircleResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="150dp"
-                tools:layout_editor_absoluteY="588dp" />
+                android:layout_marginStart="69dp"
+                android:layout_marginTop="588dp"
+                app:layout_constraintStart_toEndOf="@+id/detailGreatCicleLabel"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/initHeadingResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:layout_editor_absoluteX="150dp"
-                tools:layout_editor_absoluteY="636dp" />
+                android:layout_marginStart="52dp"
+                android:layout_marginTop="636dp"
+                app:layout_constraintStart_toEndOf="@+id/detailHeadingLabel"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/deletePlaceBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="234dp"
+                android:layout_marginTop="19dp"
                 android:text="Delete"
-                tools:layout_editor_absoluteX="264dp"
-                tools:layout_editor_absoluteY="464dp" />
+                app:layout_constraintStart_toStartOf="@+id/saveChangeBtn"
+                app:layout_constraintTop_toBottomOf="@+id/detailElevationTF" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
