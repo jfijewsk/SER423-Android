@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 public class PlaceDetails extends AppCompatActivity {
 
@@ -25,6 +26,19 @@ public class PlaceDetails extends AppCompatActivity {
         Button button = (Button) toolbar.findViewById(R.id.new_place_button);
         button.setText("Back");
 
+        // Get all the Textfields
+        final TextView nameTF = (TextView) findViewById(R.id.detailNameTF);
+        final TextView addressTF1 = (TextView) findViewById(R.id.detailAddressTF1);
+        final TextView addressTF2 = (TextView) findViewById(R.id.detailAddressTF2);
+        final TextView addressTitleTF = (TextView) findViewById(R.id.detailAddressTitleTF);
+        final TextView descriptionTF = (TextView) findViewById(R.id.detailDescriptionTF);
+        final TextView categoryTF = (TextView) findViewById(R.id.detailCategoryTF);
+        final TextView latitudeTF = (TextView) findViewById(R.id.detailLatitudeTF);
+        final TextView longitudeTF = (TextView) findViewById(R.id.detailLongitudeTF);
+        final TextView elevationTF = (TextView) findViewById(R.id.detailElevationTF);
+
+        Button saveButton = (Button) findViewById(R.id.saveChangeBtn);
+        Button deleteBtn = (Button) findViewById(R.id.deletePlaceBtn);
     }
 
     public void toolBarAction(View view){

@@ -89,6 +89,10 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
         lastSelectedView = v;
         lastSelectedPlace = aCrs;
 
+
+        // Get the selected place information
+        
+
         Intent intent = new Intent(lastSelectedView.getContext(), PlaceDetails.class);
         lastSelectedView.getContext().startActivity(intent);
 
