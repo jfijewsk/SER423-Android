@@ -2,7 +2,11 @@ package edu.asu.bsse.jfijewsk.lab7;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,7 +95,35 @@ public class PlaceListAdapter extends RecyclerView.Adapter<PlaceListAdapter.View
 
 
         // Get the selected place information
-        
+        String selectedPlace = "null";
+        try{
+            PlaceDB db = new PlaceDB(lastSelectedView.getContext());
+            SQLiteDatabase dataBase = db.openDB();
+
+            Cursor cur = dataBase.rawQuery("SELECT name, description, category, addressTitle, addressStreet, elevation, latitude, longitude\n" +
+                            "FROM places \n" +
+                            "WHERE name = '" + aCrs + "'",
+                    new String[]{});
+
+            while(cur.moveToNext()){
+                try{
+                    //placeNames.put(cur.getString(0), cur.getString(1));
+                    Log.d("Debug", "Retreived location address: =" + cur.getString(4));
+                    //Log.d("Debug1", "SELECTED PLACE =" + cur.getString(1));
+
+                }catch(Exception ex){
+                    android.util.Log.w(this.getClass().getSimpleName(),"exception stepping thru cursor"+ex.getMessage());
+                }
+            }
+
+
+        }
+        catch(Exception e){
+            Log.d("test", "Errored at getting database file");
+            Log.d("test", e.toString());
+
+            //System.out.print(e);
+        }
 
         Intent intent = new Intent(lastSelectedView.getContext(), PlaceDetails.class);
         lastSelectedView.getContext().startActivity(intent);

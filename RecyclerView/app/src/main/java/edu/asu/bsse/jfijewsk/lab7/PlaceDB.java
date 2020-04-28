@@ -34,7 +34,7 @@ import java.sql.SQLException;
 public class PlaceDB extends SQLiteOpenHelper {
     private static final boolean debugon = true;
     private static final int DATABASE_VERSION = 3;
-    private static String dbName = "coursedb";
+    private static String dbName = "placedb";
     private String dbPath;
     private SQLiteDatabase crsDB;
     private final Context context;
