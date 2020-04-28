@@ -84,6 +84,22 @@
                 tools:layout_editor_absoluteY="536dp" />
 
             <TextView
+                android:id="@+id/detailGreatCicleLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Great Circle"
+                tools:layout_editor_absoluteX="7dp"
+                tools:layout_editor_absoluteY="590dp" />
+
+            <TextView
+                android:id="@+id/detailHeadingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Initial Heading"
+                tools:layout_editor_absoluteX="6dp"
+                tools:layout_editor_absoluteY="636dp" />
+
+            <TextView
                 android:id="@+id/detailElevationTF2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -202,8 +218,37 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Save Changes"
-                tools:layout_editor_absoluteX="155dp"
-                tools:layout_editor_absoluteY="466dp" />
+                tools:layout_editor_absoluteX="30dp"
+                tools:layout_editor_absoluteY="464dp" />
+
+            <Spinner
+                android:id="@+id/secondPlaceSpinner"
+                android:layout_width="254dp"
+                android:layout_height="26dp"
+                tools:layout_editor_absoluteX="150dp"
+                tools:layout_editor_absoluteY="536dp" />
+
+            <TextView
+                android:id="@+id/greatCircleResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="150dp"
+                tools:layout_editor_absoluteY="588dp" />
+
+            <TextView
+                android:id="@+id/initHeadingResult"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout_editor_absoluteX="150dp"
+                tools:layout_editor_absoluteY="636dp" />
+
+            <Button
+                android:id="@+id/deletePlaceBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Delete"
+                tools:layout_editor_absoluteX="264dp"
+                tools:layout_editor_absoluteY="464dp" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
