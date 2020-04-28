@@ -19,7 +19,15 @@ import android.widget.TextView;
 public class PlaceDetails extends AppCompatActivity {
 
     PlaceDescription currentPlace;
-
+    TextView nameTF;
+    TextView addressTF1;
+    TextView addressTF2;
+    TextView addressTitleTF;
+    TextView descriptionTF;
+    TextView categoryTF;
+    TextView latitudeTF;
+    TextView longitudeTF;
+    TextView elevationTF;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,15 +42,15 @@ public class PlaceDetails extends AppCompatActivity {
         button.setText("Back");
 
         // Get all the Textfields
-        final TextView nameTF = (TextView) findViewById(R.id.detailNameTF);
-        final TextView addressTF1 = (TextView) findViewById(R.id.detailAddressTF1);
-        final TextView addressTF2 = (TextView) findViewById(R.id.detailAddressTF2);
-        final TextView addressTitleTF = (TextView) findViewById(R.id.detailAddressTitleTF);
-        final TextView descriptionTF = (TextView) findViewById(R.id.detailDescriptionTF);
-        final TextView categoryTF = (TextView) findViewById(R.id.detailCategoryTF);
-        final TextView latitudeTF = (TextView) findViewById(R.id.detailLatitudeTF);
-        final TextView longitudeTF = (TextView) findViewById(R.id.detailLongitudeTF);
-        final TextView elevationTF = (TextView) findViewById(R.id.detailElevationTF);
+        nameTF = (TextView) findViewById(R.id.detailNameTF);
+        addressTF1 = (TextView) findViewById(R.id.detailAddressTF1);
+        addressTF2 = (TextView) findViewById(R.id.detailAddressTF2);
+        addressTitleTF = (TextView) findViewById(R.id.detailAddressTitleTF);
+        descriptionTF = (TextView) findViewById(R.id.detailDescriptionTF);
+        categoryTF = (TextView) findViewById(R.id.detailCategoryTF);
+        latitudeTF = (TextView) findViewById(R.id.detailLatitudeTF);
+        longitudeTF = (TextView) findViewById(R.id.detailLongitudeTF);
+        elevationTF = (TextView) findViewById(R.id.detailElevationTF);
 
         Button saveButton = (Button) findViewById(R.id.saveChangeBtn);
         Button deleteBtn = (Button) findViewById(R.id.deletePlaceBtn);
@@ -62,6 +70,20 @@ public class PlaceDetails extends AppCompatActivity {
 
         currentPlace = mainActivity.getPlace(name);
 
-        Log.d("DATA", "GOT PLACE INFO and address is " + currentPlace.getAddress());
+        Log.d("DEBUG", currentPlace.getAddress());
+        String[] addressArray = currentPlace.getAddress().split("\\$");
+
+        nameTF.setText(currentPlace.getName());
+        addressTF1.setText(addressArray[0]);
+        addressTF2.setText(addressArray[1]);
+        addressTitleTF.setText(currentPlace.getAddress_title());
+        descriptionTF.setText(currentPlace.getDescription());
+        categoryTF.setText(currentPlace.getCategory());
+        elevationTF.setText(Double.toString(currentPlace.getElevation()));
+        latitudeTF.setText(Double.toString(currentPlace.getLatitude()));
+        longitudeTF.setText(Double.toString(currentPlace.getLongitude()));
+
+        //Log.d("DATA", "GOT PLACE INFO and address is " + currentPlace.getAddress());
+
     }
 }
