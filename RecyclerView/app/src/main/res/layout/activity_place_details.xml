@@ -18,22 +18,20 @@
 
     </include>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="409dp"
-        android:layout_height="673dp"
-        android:layout_marginStart="1dp"
-        android:layout_marginTop="1dp"
+    <ScrollView
+        android:id="@+id/scrollView2"
+        android:layout_width="410dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/app_toolbar"
-        android:id="@+id/scrollView2">
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="407dp"
-            android:layout_height="671dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="1dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            android:layout_marginTop="1dp">
 
             <TextView
                 android:id="@+id/detailNameLabel"
@@ -86,7 +84,7 @@
                 android:id="@+id/detailSelectSecondLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="12dp"
                 android:text="Select second place"
                 app:layout_constraintStart_toStartOf="@+id/detailElevationTF2"
                 app:layout_constraintTop_toBottomOf="@+id/saveChangeBtn" />
@@ -95,22 +93,23 @@
                 android:id="@+id/detailGreatCicleLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="69dp"
-                android:layout_marginBottom="27dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="16dp"
                 android:text="Great Circle"
-                app:layout_constraintBottom_toTopOf="@+id/detailHeadingLabel"
-                app:layout_constraintEnd_toStartOf="@+id/secondPlaceSpinner" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detailSelectSecondLabel" />
 
             <TextView
                 android:id="@+id/detailHeadingLabel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="52dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginStart="7dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="32dp"
                 android:text="Initial Heading"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/secondPlaceSpinner"
-                app:layout_constraintStart_toStartOf="@+id/detailGreatCicleLabel" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/detailGreatCicleLabel" />
 
             <TextView
                 android:id="@+id/detailElevationTF2"
@@ -245,8 +244,8 @@
                 android:id="@+id/saveChangeBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="30dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="16dp"
                 android:text="Save Changes"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/detailElevationTF" />
@@ -255,8 +254,8 @@
                 android:id="@+id/secondPlaceSpinner"
                 android:layout_width="254dp"
                 android:layout_height="26dp"
-                android:layout_marginTop="24dp"
-                android:layout_marginEnd="3dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="4dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/saveChangeBtn" />
 
@@ -264,17 +263,19 @@
                 android:id="@+id/greatCircleResult"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="69dp"
-                android:layout_marginTop="588dp"
+                android:layout_marginStart="68dp"
+                android:layout_marginTop="556dp"
+                android:text="0"
                 app:layout_constraintStart_toEndOf="@+id/detailGreatCicleLabel"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/initHeadingResult"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="8dp"
+                android:layout_height="16dp"
                 android:layout_marginStart="52dp"
-                android:layout_marginTop="636dp"
+                android:layout_marginTop="588dp"
+                android:text="0"
                 app:layout_constraintStart_toEndOf="@+id/detailHeadingLabel"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -282,13 +283,13 @@
                 android:id="@+id/deletePlaceBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="234dp"
-                android:layout_marginTop="19dp"
+                android:layout_marginStart="228dp"
+                android:layout_marginTop="16dp"
                 android:text="Delete"
                 app:layout_constraintStart_toStartOf="@+id/saveChangeBtn"
                 app:layout_constraintTop_toBottomOf="@+id/detailElevationTF" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
