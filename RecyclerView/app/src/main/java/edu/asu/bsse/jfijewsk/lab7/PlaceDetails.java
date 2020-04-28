@@ -26,4 +26,10 @@ public class PlaceDetails extends AppCompatActivity {
         button.setText("Back");
 
     }
+
+    public void toolBarAction(View view){
+        //Log.d("Testing", "Button hit");
+
+        finish();
+    }
 }

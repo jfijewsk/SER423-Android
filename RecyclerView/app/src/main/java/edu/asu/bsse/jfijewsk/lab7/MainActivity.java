@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    public void addNewPlaceLauncher(View view){
+    public void toolBarAction(View view){
         //Log.d("Testing", "Button hit");
 
         Intent intent = new Intent(this, AddNewPlace.class);

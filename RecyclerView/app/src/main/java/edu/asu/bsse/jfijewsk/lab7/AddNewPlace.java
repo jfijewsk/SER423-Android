@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.app.AlertDialog;
 import android.content.ContentValues;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -130,5 +131,11 @@ public class AddNewPlace extends AppCompatActivity {
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
         }
+    }
+
+    public void toolBarAction(View view){
+        //Log.d("Testing", "Button hit");
+
+        finish();
     }
 }
