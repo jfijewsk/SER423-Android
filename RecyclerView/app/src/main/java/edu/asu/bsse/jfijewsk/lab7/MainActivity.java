@@ -69,7 +69,6 @@ public class MainActivity extends AppCompatActivity {
         listOfCoursesRV.setAdapter(anAdapter);
 
         // Try to get database
-        String selectedPlace = "null";
         try {
             db = new PlaceDB((Context) this);
             dataBase = db.openDB();
@@ -216,4 +215,46 @@ public class MainActivity extends AppCompatActivity {
         }
         return null;
     }
+
+    public String[] getAllPlaces(){
+        String[] result;
+        try {
+            if (db == null) {
+                Log.d("Debug", "db is null");
+                db = new PlaceDB(this.getApplicationContext());
+            }
+            //PlaceDB db = new PlaceDB(this);
+            dataBase = db.openDB();
+
+            Cursor cur = dataBase.rawQuery("select name, category from places;",
+                    new String[]{});
+
+            result = new String[cur.getCount()];
+            int i = 0;
+            while (cur.moveToNext()) {
+                try {
+                    result[i] = cur.getString(0);
+                    //Log.d("Debug", "SELECTED PLACE =" + cur.getString(0));
+                    //Log.d("Debug1", "SELECTED PLACE =" + cur.getString(1));
+                    i++;
+
+                } catch (Exception ex) {
+                    android.util.Log.w(this.getClass().getSimpleName(), "exception stepping thru cursor" + ex.getMessage());
+                }
+            }
+
+            return result;
+
+
+        } catch (Exception e) {
+            Log.d("getAllPlaces", "Errored at getting database file");
+            Log.d("getAllPlaces", e.toString());
+
+            //System.out.print(e);
+        }
+
+        return null;
+
+    }
+
 }

@@ -13,8 +13,13 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class PlaceDetails extends AppCompatActivity {
 
@@ -84,6 +89,21 @@ public class PlaceDetails extends AppCompatActivity {
         longitudeTF.setText(Double.toString(currentPlace.getLongitude()));
 
         //Log.d("DATA", "GOT PLACE INFO and address is " + currentPlace.getAddress());
+        // Populate spinner
+        List<String> spinnerArray =  new ArrayList<String>();
+        String[] allPlacesNames = mainActivity.getAllPlaces();
 
+        if(allPlacesNames != null) {
+            for (int i = 0; i < allPlacesNames.length; i++) {
+                spinnerArray.add(allPlacesNames[i]);
+            }
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                this, android.R.layout.simple_spinner_item, spinnerArray);
+
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        Spinner sItems = (Spinner) findViewById(R.id.secondPlaceSpinner);
+        sItems.setAdapter(adapter);
     }
 }
