@@ -180,9 +180,9 @@ public class MainActivity extends AppCompatActivity {
                     // Try to get the double values
 
                     try {
-                        latitude = Double.parseDouble(String.valueOf(cur.getString(5)));
-                        longitude = Double.parseDouble(String.valueOf(cur.getString(6)));
-                        elevation = Double.parseDouble(String.valueOf(cur.getString(7)));
+                        latitude = Double.parseDouble(String.valueOf(cur.getString(6)));
+                        longitude = Double.parseDouble(String.valueOf(cur.getString(7)));
+                        elevation = Double.parseDouble(String.valueOf(cur.getString(5)));
 
                     } catch (Exception e) {
                         Log.d("ERROR", "Could not turn entered values into doubles");

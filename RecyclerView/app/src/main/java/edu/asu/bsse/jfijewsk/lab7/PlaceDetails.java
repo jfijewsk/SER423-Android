@@ -145,31 +145,28 @@ public class PlaceDetails extends AppCompatActivity {
 
     }
 
-    public double calcGreatCircle(double lat1, double long1, double lat2, double long2){
-        // great circle distance in radians
-        double angle1 = Math.acos(Math.sin(lat1) * Math.sin(lat2)
-                + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long1 - long2));
+    public double calcGreatCircle(double startLat, double startLong, double endLat, double endLong){
+        Log.d("CALCGREATECRICLE", String.valueOf(startLat));
+        Log.d("CALCGREATECRICLE", String.valueOf(startLong));
+        Log.d("CALCGREATECRICLE", String.valueOf(endLat));
+        Log.d("CALCGREATECRICLE", String.valueOf(endLong));
 
-        // convert back to degrees
-        angle1 = Math.toDegrees(angle1);
+        final int EARTH_RADIUS = 6371;
 
-        // each degree on a great circle of Earth is 60 nautical miles
-        double distance1 = 60 * angle1;
+        double dLat  = Math.toRadians((endLat - startLat));
+        double dLong = Math.toRadians((endLong - startLong));
 
-        //System.out.println(distance1 + " nautical miles");
+        startLat = Math.toRadians(startLat);
+        endLat   = Math.toRadians(endLat);
 
-        double a = Math.pow(Math.sin((lat2-lat1)/2), 2)
-                + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((long2-long1)/2), 2);
+        double a = haversin(dLat) + Math.cos(startLat) * Math.cos(endLat) * haversin(dLong);
+        double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
 
-        // great circle distance in radians
-        double angle2 = 2 * Math.asin(Math.min(1, Math.sqrt(a)));
+        return (EARTH_RADIUS * c)/1.609;
 
-        // convert back to degrees
-        angle2 = Math.toDegrees(angle2);
+    }
 
-        // each degree on a great circle of Earth is 60 nautical miles
-        double distance2 = 60 * angle2;
-
-        return distance2;
+    private static double haversin(double val) {
+        return Math.pow(Math.sin(val / 2), 2);
     }
 }
