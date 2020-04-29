@@ -97,13 +97,49 @@ public class PlaceDetails extends AppCompatActivity {
             for (int i = 0; i < allPlacesNames.length; i++) {
                 spinnerArray.add(allPlacesNames[i]);
             }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(
+                    this, android.R.layout.simple_spinner_item, spinnerArray);
+
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            Spinner placeSpinner = (Spinner) findViewById(R.id.secondPlaceSpinner);
+            placeSpinner.setAdapter(adapter);
+
+            PlaceDescription secondPlace = mainActivity.getPlace(placeSpinner.getSelectedItem().toString());
+            double greatCircle = calcGreatCircle(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
+
+            Log.d("GREAT CIRCLE CALC", String.valueOf(greatCircle));
         }
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(
-                this, android.R.layout.simple_spinner_item, spinnerArray);
 
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        Spinner sItems = (Spinner) findViewById(R.id.secondPlaceSpinner);
-        sItems.setAdapter(adapter);
+
+    }
+
+    public double calcGreatCircle(double lat1, double long1, double lat2, double long2){
+        // great circle distance in radians
+        double angle1 = Math.acos(Math.sin(lat1) * Math.sin(lat2)
+                + Math.cos(lat1) * Math.cos(lat2) * Math.cos(long1 - long2));
+
+        // convert back to degrees
+        angle1 = Math.toDegrees(angle1);
+
+        // each degree on a great circle of Earth is 60 nautical miles
+        double distance1 = 60 * angle1;
+
+        System.out.println(distance1 + " nautical miles");
+
+        double a = Math.pow(Math.sin((lat2-lat1)/2), 2)
+                + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((long2-long1)/2), 2);
+
+        // great circle distance in radians
+        double angle2 = 2 * Math.asin(Math.min(1, Math.sqrt(a)));
+
+        // convert back to degrees
+        angle2 = Math.toDegrees(angle2);
+
+        // each degree on a great circle of Earth is 60 nautical miles
+        double distance2 = 60 * angle2;
+
+        return distance2;
     }
 }
