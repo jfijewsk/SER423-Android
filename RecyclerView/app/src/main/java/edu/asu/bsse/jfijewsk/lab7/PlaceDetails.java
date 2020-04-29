@@ -82,8 +82,8 @@ public class PlaceDetails extends AppCompatActivity {
                 double greatCircle = calcGreatCircle(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
                 double initHeading = getBearing(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
 
-                greatCircleResult.setText(String.valueOf(greatCircle));
-                initHeadingResult.setText(String.valueOf(initHeading));
+                greatCircleResult.setText(String.valueOf(greatCircle) + " mi");
+                initHeadingResult.setText(String.valueOf(initHeading) + " degrees");
 
 
             }
@@ -142,8 +142,8 @@ public class PlaceDetails extends AppCompatActivity {
             double greatCircle = calcGreatCircle(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
             double initHeading = getBearing(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
 
-            greatCircleResult.setText(String.valueOf(greatCircle));
-            initHeadingResult.setText(String.valueOf(initHeading));
+            greatCircleResult.setText(String.valueOf(greatCircle) + " mi");
+            initHeadingResult.setText(String.valueOf(initHeading) + " degrees");
         }
 
 
