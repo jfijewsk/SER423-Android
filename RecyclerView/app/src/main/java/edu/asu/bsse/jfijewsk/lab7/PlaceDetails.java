@@ -13,6 +13,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
@@ -33,6 +34,9 @@ public class PlaceDetails extends AppCompatActivity {
     TextView latitudeTF;
     TextView longitudeTF;
     TextView elevationTF;
+    TextView greatCircleResult;
+    TextView initHeadingResult;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,10 +61,35 @@ public class PlaceDetails extends AppCompatActivity {
         longitudeTF = (TextView) findViewById(R.id.detailLongitudeTF);
         elevationTF = (TextView) findViewById(R.id.detailElevationTF);
 
+        greatCircleResult = (TextView) findViewById(R.id.greatCircleResult);
+        initHeadingResult = (TextView) findViewById(R.id.initHeadingResult);
+
         Button saveButton = (Button) findViewById(R.id.saveChangeBtn);
         Button deleteBtn = (Button) findViewById(R.id.deletePlaceBtn);
 
         getPlaceDetails(getIntent().getStringExtra("placeName"));
+        final Spinner placeSpinner = (Spinner) findViewById(R.id.secondPlaceSpinner);
+
+        placeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                Log.d("SPINNER DEBUG", "Selected " + placeSpinner.getSelectedItem().toString());
+
+                final MainActivity mainActivity = new MainActivity();
+
+                PlaceDescription secondPlace = mainActivity.getPlace(placeSpinner.getSelectedItem().toString());
+                double greatCircle = calcGreatCircle(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
+                greatCircleResult.setText(String.valueOf(greatCircle));
+
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // your code here
+            }
+
+        });
     }
 
     public void toolBarAction(View view){
@@ -109,6 +138,7 @@ public class PlaceDetails extends AppCompatActivity {
             double greatCircle = calcGreatCircle(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
 
             Log.d("GREAT CIRCLE CALC", String.valueOf(greatCircle));
+            greatCircleResult.setText(String.valueOf(greatCircle));
         }
 
 
@@ -126,7 +156,7 @@ public class PlaceDetails extends AppCompatActivity {
         // each degree on a great circle of Earth is 60 nautical miles
         double distance1 = 60 * angle1;
 
-        System.out.println(distance1 + " nautical miles");
+        //System.out.println(distance1 + " nautical miles");
 
         double a = Math.pow(Math.sin((lat2-lat1)/2), 2)
                 + Math.cos(lat1) * Math.cos(lat2) * Math.pow(Math.sin((long2-long1)/2), 2);
