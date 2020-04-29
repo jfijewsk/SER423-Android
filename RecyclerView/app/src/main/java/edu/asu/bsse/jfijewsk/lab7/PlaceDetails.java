@@ -78,8 +78,12 @@ public class PlaceDetails extends AppCompatActivity {
                 final MainActivity mainActivity = new MainActivity();
 
                 PlaceDescription secondPlace = mainActivity.getPlace(placeSpinner.getSelectedItem().toString());
+
                 double greatCircle = calcGreatCircle(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
+                double initHeading = getBearing(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
+
                 greatCircleResult.setText(String.valueOf(greatCircle));
+                initHeadingResult.setText(String.valueOf(initHeading));
 
 
             }
@@ -136,9 +140,10 @@ public class PlaceDetails extends AppCompatActivity {
 
             PlaceDescription secondPlace = mainActivity.getPlace(placeSpinner.getSelectedItem().toString());
             double greatCircle = calcGreatCircle(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
+            double initHeading = getBearing(currentPlace.getLatitude(), currentPlace.getLongitude(), secondPlace.getLatitude(), secondPlace.getLongitude());
 
-            Log.d("GREAT CIRCLE CALC", String.valueOf(greatCircle));
             greatCircleResult.setText(String.valueOf(greatCircle));
+            initHeadingResult.setText(String.valueOf(initHeading));
         }
 
 
@@ -146,10 +151,10 @@ public class PlaceDetails extends AppCompatActivity {
     }
 
     public double calcGreatCircle(double startLat, double startLong, double endLat, double endLong){
-        Log.d("CALCGREATECRICLE", String.valueOf(startLat));
-        Log.d("CALCGREATECRICLE", String.valueOf(startLong));
-        Log.d("CALCGREATECRICLE", String.valueOf(endLat));
-        Log.d("CALCGREATECRICLE", String.valueOf(endLong));
+        //Log.d("CALCGREATECRICLE", String.valueOf(startLat));
+        //Log.d("CALCGREATECRICLE", String.valueOf(startLong));
+        //Log.d("CALCGREATECRICLE", String.valueOf(endLat));
+        //Log.d("CALCGREATECRICLE", String.valueOf(endLong));
 
         final int EARTH_RADIUS = 6371;
 
@@ -168,5 +173,29 @@ public class PlaceDetails extends AppCompatActivity {
 
     private static double haversin(double val) {
         return Math.pow(Math.sin(val / 2), 2);
+    }
+
+    public double getBearing(double lat1, double long1, double lat2, double long2)
+    {
+        double lat1R = Math.toRadians(lat1);
+        double lat2R = Math.toRadians(lat2);
+        double dLngR = Math.toRadians(long2- long1);
+        double a = Math.sin(dLngR) * Math.cos(lat2R);
+        double b = Math.cos(lat1R) * Math.sin(lat2R) - Math.sin(lat1R) * Math.cos(lat2R)
+                * Math.cos(dLngR);
+        return initialBearing(Math.atan2(a, b));
+    }
+
+    public static double normalizeBearing(double bearing) {
+        if (Double.isNaN(bearing) || Double.isInfinite(bearing))
+            return Double.NaN;
+        double bearingResult = bearing % 360;
+        if (bearingResult < 0)
+            bearingResult += 360;
+        return bearingResult;
+    }
+
+    public static double initialBearing(double input) {
+        return normalizeBearing(Math.toDegrees(input));
     }
 }
