@@ -257,4 +257,42 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public boolean updatePlace(ContentValues newPlace, String oldName){
+        //dataBase.execSQL("insert into places (name, addressTitle, addressStreet, description, category, latitude, longitude, elevation)" +
+        //        " VALUES ('ASU West', 'ASU West Campus', '13591 N 47th Ave$Phoenix AZ 85051', 'Home of ASUs Applied Computing Program', 'School', '33.608979', '-112.159469', '1100.0')");
+
+        Log.d("UPDATEPLACE", newPlace.get("name").toString());
+        try {
+            if (db == null) {
+                Log.d("Debug", "db is null");
+                db = new PlaceDB(this.getApplicationContext());
+            }
+            //PlaceDB db = new PlaceDB(this);
+            dataBase = db.openDB();
+
+            String[] targets = {oldName};
+            long result = dataBase.update("places", newPlace, "name = ?", targets);
+            if (result == -1) {
+                throw new RuntimeException();
+            }
+            dataBase.close();
+            db.close();
+
+            placeNames.remove(oldName);
+            placeNames.put(newPlace.getAsString("name"), newPlace.getAsString("category"));
+            anAdapter = new PlaceListAdapter(placeNames);
+            listOfCoursesRV.setAdapter(anAdapter);
+            return true;
+
+        } catch (Exception e) {
+            Log.d("test", "Errored at getting or saving database file");
+            Log.d("test", e.toString());
+
+            //System.out.print(e);
+        }
+
+
+        return false;
+    }
+
 }

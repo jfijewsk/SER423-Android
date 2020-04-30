@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 public class AddNewPlace extends AppCompatActivity {
@@ -52,41 +53,50 @@ public class AddNewPlace extends AppCompatActivity {
         Button saveButton = (Button) findViewById(R.id.saveBtn);
         saveButton.setOnClickListener(new OnClickListener(){
             public void onClick(View v) {
-                Log.d("Save Button hit", "Saving");
 
-                String singleAddress = addressTF1.getText().toString() + "$" + addressTF2.getText().toString();
-                double latitude = 0.0;
-                double longitude = 0.0;
-                double elevation = 0.0;
-                // Try to get the double values
+                String nameInput = nameTF.getText().toString();
 
-                try {
-                    latitude = Double.parseDouble(String.valueOf(latitudeTF.getText()));
-                    longitude = Double.parseDouble(String.valueOf(longitudeTF.getText()));
-                    elevation = Double.parseDouble(String.valueOf(elevationTF.getText()));
+                // Only save if they enter in a name
+                if(!nameInput.equals("")) {
+                    String singleAddress = addressTF1.getText().toString() + "$" + addressTF2.getText().toString();
+                    double latitude = 0.0;
+                    double longitude = 0.0;
+                    double elevation = 0.0;
+                    // Try to get the double values
 
-                } catch (Exception e) {
-                    Log.d("ERROR", "Could not turn entered values into doubles");
+                    try {
+                        latitude = Double.parseDouble(String.valueOf(latitudeTF.getText()));
+                        longitude = Double.parseDouble(String.valueOf(longitudeTF.getText()));
+                        elevation = Double.parseDouble(String.valueOf(elevationTF.getText()));
+
+                    } catch (Exception e) {
+                        Log.d("ERROR", "Could not turn entered values into doubles");
+                    }
+                    PlaceDescription newPlace = new PlaceDescription(nameTF.getText().toString(), descriptionTF.getText().toString(),
+                            categoryTF.getText().toString(), addressTitleTF.getText().toString(), singleAddress, elevation, latitude, longitude);
+
+                    // Add new place to sql dataBase
+
+                    ContentValues newPlaceSql = new ContentValues();
+                    newPlaceSql.put("name", nameTF.getText().toString());
+                    newPlaceSql.put("addressTitle", addressTitleTF.getText().toString());
+                    newPlaceSql.put("addressStreet", singleAddress);
+                    newPlaceSql.put("description", descriptionTF.getText().toString());
+                    newPlaceSql.put("category", categoryTF.getText().toString());
+                    newPlaceSql.put("latitude", latitude);
+                    newPlaceSql.put("longitude", longitude);
+                    newPlaceSql.put("elevation", elevation);
+
+                    popUpMessage(mainActivity.addPlace(newPlaceSql));
+
+
+                    //MainActivity.dataBase.insert("places", null, newPlaceSql);
                 }
-                PlaceDescription newPlace = new PlaceDescription(nameTF.getText().toString(), descriptionTF.getText().toString(),
-                        categoryTF.getText().toString(), addressTitleTF.getText().toString(), singleAddress, elevation, latitude, longitude);
 
-                // Add new place to sql dataBase
+                else{
+                    Toast.makeText(getApplicationContext(), "You did not enter a name", Toast.LENGTH_SHORT).show();
 
-                ContentValues newPlaceSql = new ContentValues();
-                newPlaceSql.put("name", nameTF.getText().toString());
-                newPlaceSql.put("addressTitle", addressTitleTF.getText().toString());
-                newPlaceSql.put("addressStreet", singleAddress);
-                newPlaceSql.put("description", descriptionTF.getText().toString());
-                newPlaceSql.put("category", categoryTF.getText().toString());
-                newPlaceSql.put("latitude", latitude);
-                newPlaceSql.put("longitude", longitude);
-                newPlaceSql.put("elevation", elevation);
-
-                popUpMessage(mainActivity.addPlace(newPlaceSql));
-
-
-                //MainActivity.dataBase.insert("places", null, newPlaceSql);
+                }
             }
                 ;
         });

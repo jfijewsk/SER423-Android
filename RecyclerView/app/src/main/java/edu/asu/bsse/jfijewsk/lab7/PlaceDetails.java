@@ -1,5 +1,8 @@
 package edu.asu.bsse.jfijewsk.lab7;
 
+import android.app.AlertDialog;
+import android.content.ContentValues;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,6 +21,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,6 +97,55 @@ public class PlaceDetails extends AppCompatActivity {
                 // your code here
             }
 
+        });
+
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                String nameInput = nameTF.getText().toString();
+
+                // Only save if they enter in a name
+                if(!nameInput.equals("")) {
+                    String singleAddress = addressTF1.getText().toString() + "$" + addressTF2.getText().toString();
+                    double latitude = 0.0;
+                    double longitude = 0.0;
+                    double elevation = 0.0;
+                    // Try to get the double values
+
+                    try {
+                        latitude = Double.parseDouble(String.valueOf(latitudeTF.getText()));
+                        longitude = Double.parseDouble(String.valueOf(longitudeTF.getText()));
+                        elevation = Double.parseDouble(String.valueOf(elevationTF.getText()));
+
+                    } catch (Exception e) {
+                        Log.d("ERROR", "Could not turn entered values into doubles");
+                    }
+                    PlaceDescription newPlace = new PlaceDescription(nameTF.getText().toString(), descriptionTF.getText().toString(),
+                            categoryTF.getText().toString(), addressTitleTF.getText().toString(), singleAddress, elevation, latitude, longitude);
+
+                    // Add new place to sql dataBase
+
+                    ContentValues newPlaceSql = new ContentValues();
+                    newPlaceSql.put("name", nameTF.getText().toString());
+                    newPlaceSql.put("addressTitle", addressTitleTF.getText().toString());
+                    newPlaceSql.put("addressStreet", singleAddress);
+                    newPlaceSql.put("description", descriptionTF.getText().toString());
+                    newPlaceSql.put("category", categoryTF.getText().toString());
+                    newPlaceSql.put("latitude", latitude);
+                    newPlaceSql.put("longitude", longitude);
+                    newPlaceSql.put("elevation", elevation);
+
+                    MainActivity mainActivity = new MainActivity();
+                    mainActivity.updatePlace(newPlaceSql, currentPlace.getName().toString());
+
+
+                    //MainActivity.dataBase.insert("places", null, newPlaceSql);
+                }
+
+                else{
+                    Toast.makeText(getApplicationContext(), "You did not enter a name", Toast.LENGTH_SHORT).show();
+
+                }
+            }
         });
     }
 
@@ -197,5 +250,38 @@ public class PlaceDetails extends AppCompatActivity {
 
     public static double initialBearing(double input) {
         return normalizeBearing(Math.toDegrees(input));
+    }
+
+    private void popUpMessage(boolean result){
+
+        if(result) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage(nameTF.getText().toString() + " added to sql database!");
+            alertDialogBuilder.setPositiveButton("yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Log.d("Debug", "Clicked ok");
+                            finish();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+
+        else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage(nameTF.getText().toString() + " failed to be added to sql database! Make sure there is not already a duplicate place in the database.");
+            alertDialogBuilder.setPositiveButton("yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Log.d("Debug", "Clicked ok");
+                            //Toast.makeText(this,"You clicked yes button",Toast.LENGTH_LONG).show();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
     }
 }
