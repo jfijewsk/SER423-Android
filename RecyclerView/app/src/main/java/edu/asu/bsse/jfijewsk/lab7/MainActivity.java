@@ -295,4 +295,38 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
+    public boolean removePlace(String oldName){
+
+        try {
+            if (db == null) {
+                Log.d("Debug", "db is null");
+                db = new PlaceDB(this.getApplicationContext());
+            }
+            //PlaceDB db = new PlaceDB(this);
+            dataBase = db.openDB();
+
+            String[] targets = {oldName};
+            long result = dataBase.delete("places", "name = ?", targets);
+            if (result == -1) {
+                throw new RuntimeException();
+            }
+            dataBase.close();
+            db.close();
+
+            placeNames.remove(oldName);
+            anAdapter = new PlaceListAdapter(placeNames);
+            listOfCoursesRV.setAdapter(anAdapter);
+            return true;
+
+        } catch (Exception e) {
+            Log.d("test", "Errored at getting or saving database file");
+            Log.d("test", e.toString());
+
+            //System.out.print(e);
+        }
+
+
+        return false;
+    }
+
 }

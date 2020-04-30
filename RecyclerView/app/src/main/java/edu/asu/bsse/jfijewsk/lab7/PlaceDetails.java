@@ -135,7 +135,7 @@ public class PlaceDetails extends AppCompatActivity {
                     newPlaceSql.put("elevation", elevation);
 
                     MainActivity mainActivity = new MainActivity();
-                    mainActivity.updatePlace(newPlaceSql, currentPlace.getName().toString());
+                    popUpMessage(mainActivity.updatePlace(newPlaceSql, currentPlace.getName().toString()));
 
 
                     //MainActivity.dataBase.insert("places", null, newPlaceSql);
@@ -145,6 +145,14 @@ public class PlaceDetails extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "You did not enter a name", Toast.LENGTH_SHORT).show();
 
                 }
+            }
+        });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                MainActivity mainActivity = new MainActivity();
+                removePopUpMessage(mainActivity.removePlace(currentPlace.getName()));
+
             }
         });
     }
@@ -273,6 +281,39 @@ public class PlaceDetails extends AppCompatActivity {
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setMessage(nameTF.getText().toString() + " failed to be added to sql database! Make sure there is not already a duplicate place in the database.");
             alertDialogBuilder.setPositiveButton("yes",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Log.d("Debug", "Clicked ok");
+                            //Toast.makeText(this,"You clicked yes button",Toast.LENGTH_LONG).show();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+    }
+
+    private void removePopUpMessage(boolean result){
+
+        if(result) {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage(nameTF.getText().toString() + " removed from sql database!");
+            alertDialogBuilder.setPositiveButton("Ok",
+                    new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface arg0, int arg1) {
+                            Log.d("Debug", "Clicked ok");
+                            finish();
+                        }
+                    });
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+        }
+
+        else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setMessage(nameTF.getText().toString() + " failed to be removed to sql database!");
+            alertDialogBuilder.setPositiveButton("Ok",
                     new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
